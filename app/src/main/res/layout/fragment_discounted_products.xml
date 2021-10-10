@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".controller.DiscountedProductsFragment">
+
+    <data>
+        <variable
+            name="recyclerviewAdapter"
+            type="com.example.wtechbitirmeprojesi.adapter.ProductsRecyclerViewAdapter" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:adapter="@{recyclerviewAdapter}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/discountedProductsList">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

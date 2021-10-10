@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_navigation"
+    app:startDestination="@id/discountedProductsFragment">
+
+    <fragment
+        android:id="@+id/discountedProductsFragment"
+        android:name="com.example.wtechbitirmeprojesi.controller.DiscountedProductsFragment"
+        android:label="@string/discounted_products"
+        tools:layout="@layout/fragment_discounted_products">
+        <action
+            android:id="@+id/action_discountedProductsFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.wtechbitirmeprojesi.controller.ProductsFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_products">
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.wtechbitirmeprojesi.controller.CardFragment"
+        android:label="@string/card">
+        <action
+            android:id="@+id/action_cardFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.wtechbitirmeprojesi.controller.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
+</navigation>

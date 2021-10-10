@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WtechBitirmeProjesi</string>
+    <string name="products">Products</string>
+    <string name="card">Card</string>
+    <string name="discounted_products">Discounted Products</string>
+    <!-- TODO: Remove or change this placeholder text -->
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="card_preview_column">2</integer>
+    <dimen name="card_view_spacing">10dp</dimen>
+    <dimen name="linear_layout_spacing">40dp</dimen>
+
+
+</resources>

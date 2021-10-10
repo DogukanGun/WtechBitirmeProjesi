@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WtechBitirmeProjesi</string>
+    <string name="products">Ürünler</string>
+    <string name="card">Cart</string>
+    <string name="discounted_products">İndirimli Ürünler</string>
+</resources>
