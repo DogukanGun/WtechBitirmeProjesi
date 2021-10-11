@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class Product(
     @SerializedName("id")
     var id:Int,
+    @SerializedName("urun_adi")
+    var name:String,
     @SerializedName("kullanici")
     var user:String,
     @SerializedName("gorsel1")

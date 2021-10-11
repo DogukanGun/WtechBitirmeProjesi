@@ -15,12 +15,15 @@ import com.example.wtechbitirmeprojesi.adapter.ProductsRecyclerViewAdapter
 import com.example.wtechbitirmeprojesi.databinding.FragmentProductsBinding
 import android.R.attr.spacing
 import android.graphics.Rect
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+import com.example.wtechbitirmeprojesi.viewModel.ProductsViewModel
 
 
 class ProductsFragment : Fragment() {
     lateinit var binding:FragmentProductsBinding
+    private val productViewModel:ProductsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +32,8 @@ class ProductsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_products,container,false)
 
+        //room kayiti yap
+        productViewModel.request()
         binding.apply {
             productsList.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
             productsList.addItemDecoration(
@@ -37,7 +42,15 @@ class ProductsFragment : Fragment() {
                     resources.getInteger(R.integer.card_preview_column))
 
             )
-            binding.recyclerviewAdapter=ProductsRecyclerViewAdapter()
+            recyclerviewAdapter=ProductsRecyclerViewAdapter(emptyList())
+
+            productViewModel.products.observe(viewLifecycleOwner,{ list->
+                if (list.isNotEmpty()){
+                    recyclerviewAdapter=ProductsRecyclerViewAdapter(list)
+                }
+            })
+
+
 
         }
 

@@ -14,9 +14,3 @@ class RetrofitObject {
 
     }
 }
-/*
-
- fun getYapilacaklarDAOInterface(): YapilacaklarDAOInterface {
-            return RetrofitClient.getClient(BASE_URL).create(YapilacaklarDAOInterface::class.java)
-        }
- */
