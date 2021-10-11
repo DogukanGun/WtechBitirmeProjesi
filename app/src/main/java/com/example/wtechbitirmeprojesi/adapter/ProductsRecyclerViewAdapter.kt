@@ -25,8 +25,9 @@ class ProductsRecyclerViewAdapter(private val products:List<Product>): RecyclerV
     }
 
     override fun onBindViewHolder(holder: ProductsCardHolder, position: Int) {
-        if (products.isNotEmpty()){
-            holder.binding.apply {
+        holder.binding.apply {
+            if (products.isNotEmpty()){
+
                 val imagePath= products[position].imagePath1
                 Picasso.get().load(imagePath).into(imageView)
                 textView.text=products[position].name
@@ -35,6 +36,9 @@ class ProductsRecyclerViewAdapter(private val products:List<Product>): RecyclerV
                     Constants.navHostFragment.navController.navigate(action)
                 }
 
+
+            }else{
+                textView.text
             }
         }
 

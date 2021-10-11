@@ -34,5 +34,6 @@ class CardViewModel:ViewModel() {
     var exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         errorMessage.postValue("Api Error"+throwable.localizedMessage)
         Log.d("CardViewModel ",throwable.localizedMessage!!)
+        loading.value=false
     }
 }

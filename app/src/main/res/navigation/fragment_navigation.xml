@@ -28,7 +28,12 @@
     <fragment
         android:id="@+id/cardFragment"
         android:name="com.example.wtechbitirmeprojesi.controller.CardFragment"
-        android:label="@string/card"/>
+        android:label="@string/card">
+        <action
+            android:id="@+id/action_cardFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpTo="@id/cardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.example.wtechbitirmeprojesi.controller.ProductDetailFragment"
