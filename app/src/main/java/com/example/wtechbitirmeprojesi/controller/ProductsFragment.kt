@@ -52,6 +52,8 @@ class ProductsFragment : Fragment() {
 
 
 
+
+
         }
 
 
@@ -77,7 +79,7 @@ class ProductsFragment : Fragment() {
             val padding = parent.width / mGridSize - frameWidth
             val itemPosition = (view.layoutParams as RecyclerView.LayoutParams).viewAdapterPosition
             if (itemPosition < mGridSize) {
-                outRect.top = 0
+                outRect.top = padding
             } else {
                 outRect.top = mSizeGridSpacingPx
             }

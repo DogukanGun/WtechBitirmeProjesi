@@ -3,6 +3,9 @@
     <integer name="card_preview_column">2</integer>
     <dimen name="card_view_spacing">10dp</dimen>
     <dimen name="linear_layout_spacing">40dp</dimen>
+    <dimen name="button_width">120dp</dimen>
+    <dimen name="grid_layout_width">180dp</dimen>
+    <dimen name="grid_layout_height">250dp</dimen>
 
 
 </resources>

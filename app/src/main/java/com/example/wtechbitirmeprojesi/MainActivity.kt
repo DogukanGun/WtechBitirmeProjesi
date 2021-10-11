@@ -8,10 +8,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.example.wtechbitirmeprojesi.databinding.ActivityMainBinding
+import com.example.wtechbitirmeprojesi.resources.Constants
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
-    private lateinit var navHostFragment:NavHostFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setUpNavigation(){
-        navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-         NavigationUI.setupWithNavController(binding.bottomNavigationView,navHostFragment.navController)
+         Constants.navHostFragment=supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+         NavigationUI.setupWithNavController(binding.bottomNavigationView,Constants.navHostFragment.navController)
 
 
         val appBarConfiguration = AppBarConfiguration.Builder(
@@ -29,9 +29,8 @@ class MainActivity : AppCompatActivity() {
             R.id.cardFragment,
             R.id.discountedProductsFragment,
         ).build()
-        binding.toolbar.setupWithNavController(navHostFragment.navController, appBarConfiguration)
+        binding.toolbar.setupWithNavController(Constants.navHostFragment.navController, appBarConfiguration)
 
-        setSupportActionBar(binding.toolbar )
 
      }
 }

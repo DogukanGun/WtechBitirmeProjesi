@@ -4,4 +4,8 @@
     <string name="products">Ürünler</string>
     <string name="card">Cart</string>
     <string name="discounted_products">İndirimli Ürünler</string>
+    <string name="textview">text</string>
+    <string name="product_detail">Ürüm Detayı</string>
+    <string name="delete">Sil</string>
+    <string name="payment">Ödeme Yap</string>
 </resources>

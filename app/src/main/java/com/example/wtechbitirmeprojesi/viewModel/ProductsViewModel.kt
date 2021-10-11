@@ -13,12 +13,9 @@ class ProductsViewModel:ViewModel() {
 
     var job: Job? = null
     var loading = MutableLiveData(false)
-    var errorMessage = MutableLiveData<String>()
-    var products:MutableLiveData<List<Product>>
+    private var errorMessage = MutableLiveData<String>()
+    var products:MutableLiveData<List<Product>> = MutableLiveData(emptyList())
 
-    init {
-        products= MutableLiveData(emptyList())
-    }
     fun request(){
         loading.value=true
         job= CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
@@ -40,9 +37,9 @@ class ProductsViewModel:ViewModel() {
         loading.value = false
     }
 
-    val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+    val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         errorMessage.postValue("ApiError")
-        Log.d("GetAccountViewModel", throwable.localizedMessage!!)
+        Log.d("ProductViewModel", throwable.localizedMessage!!)
 
     }
 }
