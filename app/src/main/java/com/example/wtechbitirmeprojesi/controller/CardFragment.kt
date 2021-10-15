@@ -12,10 +12,12 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.wtechbitirmeprojesi.R
 import com.example.wtechbitirmeprojesi.adapter.CardRecyclerViewAdapter
 import com.example.wtechbitirmeprojesi.databinding.FragmentCardBinding
 import com.example.wtechbitirmeprojesi.resources.Constants
+import com.example.wtechbitirmeprojesi.room.Database
 import com.example.wtechbitirmeprojesi.viewModel.CardViewModel
 
 
@@ -31,6 +33,13 @@ class CardFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_card,container,false)
+        if (Constants.db==null){
+            val db = Room.databaseBuilder(
+                requireContext(),
+                Database::class.java, "product"
+            ).build()
+            Constants.db=db
+        }
         binding.apply {
             cardList.layoutManager=LinearLayoutManager(requireContext())
             recyclerviewAdapter=CardRecyclerViewAdapter(emptyList())

@@ -38,5 +38,10 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.wtechbitirmeprojesi.controller.ProductDetailFragment"
         android:label="@string/product_detail"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

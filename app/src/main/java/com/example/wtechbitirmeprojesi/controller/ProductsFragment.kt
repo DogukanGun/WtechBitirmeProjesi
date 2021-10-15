@@ -1,29 +1,36 @@
 package com.example.wtechbitirmeprojesi.controller
 
-import android.R.attr
-import android.os.Bundle
+ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import androidx.databinding.DataBindingUtil
+ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wtechbitirmeprojesi.R
 import com.example.wtechbitirmeprojesi.adapter.ProductsRecyclerViewAdapter
 import com.example.wtechbitirmeprojesi.databinding.FragmentProductsBinding
-import android.R.attr.spacing
-import android.graphics.Rect
+ import android.graphics.Rect
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView.ItemDecoration
-import com.example.wtechbitirmeprojesi.viewModel.ProductsViewModel
+ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+ import androidx.room.Room
+ import com.example.wtechbitirmeprojesi.model.Product
+ import com.example.wtechbitirmeprojesi.resources.Constants
+ import com.example.wtechbitirmeprojesi.room.Database
+ import com.example.wtechbitirmeprojesi.room.ProductsDAO
+ import com.example.wtechbitirmeprojesi.viewModel.ProductsViewModel
+ import kotlinx.coroutines.CoroutineScope
+ import kotlinx.coroutines.Dispatchers
+ import kotlinx.coroutines.launch
+ import kotlinx.coroutines.withContext
+ import okhttp3.Dispatcher
 
 
 class ProductsFragment : Fragment() {
     lateinit var binding:FragmentProductsBinding
     private val productViewModel:ProductsViewModel by viewModels()
+    lateinit var productsDAO: ProductsDAO
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,8 +39,26 @@ class ProductsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_products,container,false)
 
-        //room kayiti yap
-        productViewModel.request()
+        val db = Room.databaseBuilder(
+            requireContext(),
+            Database::class.java, "product"
+        ).build()
+        Constants.db=db
+        productsDAO=db.productDao()
+        var isDatabaseEmpty=false
+        CoroutineScope(Dispatchers.IO).launch {
+            productsDAO=Constants.db.productDao()
+            if (productsDAO.getProductById(0)==null){
+
+                isDatabaseEmpty=true
+            }
+        }
+        if (!isDatabaseEmpty){
+            productViewModel.request()
+        }
+
+
+
         binding.apply {
             productsList.layoutManager=GridLayoutManager(requireContext(),2,RecyclerView.VERTICAL,false)
             productsList.addItemDecoration(
@@ -44,14 +69,23 @@ class ProductsFragment : Fragment() {
             )
             recyclerviewAdapter=ProductsRecyclerViewAdapter(emptyList())
 
-            productViewModel.products.observe(viewLifecycleOwner,{ list->
-                if (list.isNotEmpty()){
-                    recyclerviewAdapter=ProductsRecyclerViewAdapter(list)
+            CoroutineScope(Dispatchers.IO).launch {
+                val products = productsDAO.getProducts()
+
+                withContext(Dispatchers.Main){
+                    if (!isDatabaseEmpty){
+                        recyclerviewAdapter=ProductsRecyclerViewAdapter(products)
+                    }else{
+                        productViewModel.products.observe(viewLifecycleOwner,{ list->
+                            if (list.isNotEmpty()){
+                                saveToDatabase(list)
+                                recyclerviewAdapter=ProductsRecyclerViewAdapter(list)
+                            }
+                        })
+                    }
                 }
-            })
 
-
-
+            }
 
 
         }
@@ -61,6 +95,14 @@ class ProductsFragment : Fragment() {
         return binding.root
     }
 
+    fun saveToDatabase(products:List<Product>){
+        CoroutineScope(Dispatchers.IO).launch {
+            for (index in products){
+                productsDAO.addProduct(index)
+            }
+        }
+
+    }
     companion object {
 
     }
