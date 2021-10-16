@@ -5,7 +5,7 @@
     <dimen name="linear_layout_spacing">40dp</dimen>
     <dimen name="button_width">120dp</dimen>
     <dimen name="grid_layout_width">180dp</dimen>
-    <dimen name="grid_layout_height">250dp</dimen>
+    <dimen name="grid_layout_height">350dp</dimen>
 
 
 </resources>

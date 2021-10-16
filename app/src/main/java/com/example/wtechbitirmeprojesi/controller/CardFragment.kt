@@ -16,6 +16,7 @@ import androidx.room.Room
 import com.example.wtechbitirmeprojesi.R
 import com.example.wtechbitirmeprojesi.adapter.CardRecyclerViewAdapter
 import com.example.wtechbitirmeprojesi.databinding.FragmentCardBinding
+import com.example.wtechbitirmeprojesi.model.Product
 import com.example.wtechbitirmeprojesi.resources.Constants
 import com.example.wtechbitirmeprojesi.room.Database
 import com.example.wtechbitirmeprojesi.viewModel.CardViewModel
@@ -40,12 +41,13 @@ class CardFragment : Fragment() {
             ).build()
             Constants.db=db
         }
+        cardViewModel.getProduct()
         binding.apply {
             cardList.layoutManager=LinearLayoutManager(requireContext())
-            recyclerviewAdapter=CardRecyclerViewAdapter(emptyList())
+            recyclerviewAdapter=CardRecyclerViewAdapter(mutableListOf<Product>(),cardViewModel)
 
             delete.setOnClickListener {
-                recyclerviewAdapter=CardRecyclerViewAdapter(emptyList())
+                recyclerviewAdapter=CardRecyclerViewAdapter(mutableListOf<Product>(),cardViewModel)
             }
             pay.setOnClickListener{
 
@@ -68,7 +70,7 @@ class CardFragment : Fragment() {
             })
             cardViewModel.card.observe(viewLifecycleOwner,{ card->
                 if (card.isNotEmpty()){
-                    recyclerviewAdapter=CardRecyclerViewAdapter(card)
+                    recyclerviewAdapter=CardRecyclerViewAdapter(card.toMutableList(),cardViewModel)
                 }
             })
 

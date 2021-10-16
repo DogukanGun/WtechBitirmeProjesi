@@ -10,9 +10,11 @@ import com.example.wtechbitirmeprojesi.R
  import com.example.wtechbitirmeprojesi.databinding.FragmentProductsRecyclerviewRowBinding
 import com.example.wtechbitirmeprojesi.model.Product
  import com.example.wtechbitirmeprojesi.resources.Constants
+ import com.example.wtechbitirmeprojesi.resources.Constants.toggleStatus
+ import com.example.wtechbitirmeprojesi.viewModel.ProductsViewModel
  import com.squareup.picasso.Picasso
 
-class ProductsRecyclerViewAdapter(private val products:List<Product>): RecyclerView.Adapter<ProductsRecyclerViewAdapter.ProductsCardHolder>(){
+class ProductsRecyclerViewAdapter(private val products:List<Product>,private val viewModel:ProductsViewModel): RecyclerView.Adapter<ProductsRecyclerViewAdapter.ProductsCardHolder>(){
 
     class ProductsCardHolder(val binding:FragmentProductsRecyclerviewRowBinding):RecyclerView.ViewHolder(binding.root){
 
@@ -29,11 +31,15 @@ class ProductsRecyclerViewAdapter(private val products:List<Product>): RecyclerV
             if (products.isNotEmpty()){
 
                 val imagePath= products[position].imagePath1
-                Picasso.get().load(imagePath).into(imageView)
+                Picasso.get().load(imagePath).into(image)
                 textView.text=products[position].name
                 card.setOnClickListener{
                     val action = ProductsFragmentDirections.actionProductsFragmentToProductDetailFragment()
                     Constants.navHostFragment.navController.navigate(action)
+                }
+                cardButton.setOnClickListener {
+                    products[position].cardStatus=toggleStatus(products[position].cardStatus)
+                    viewModel.updateProductCardStatus(products[position].id,products[position].cardStatus)
                 }
 
 
@@ -44,6 +50,8 @@ class ProductsRecyclerViewAdapter(private val products:List<Product>): RecyclerV
 
 
     }
+
+
 
     override fun getItemCount(): Int {
         return products.size;

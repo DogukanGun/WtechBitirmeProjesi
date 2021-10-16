@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import com.example.wtechbitirmeprojesi.model.Product
+import com.example.wtechbitirmeprojesi.resources.Constants
 import com.example.wtechbitirmeprojesi.retrofit.RetrofitClient
 import com.example.wtechbitirmeprojesi.retrofit.RetrofitObject
 import com.example.wtechbitirmeprojesi.retrofit.response.ProductResponse
@@ -18,7 +19,7 @@ class ProductsViewModel:ViewModel() {
     private var errorMessage = MutableLiveData<String>()
     var products:MutableLiveData<List<Product>> = MutableLiveData(emptyList())
 
-    fun request(){
+    fun getProducts(){
         loading.value=true
         job= CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
             val response = RetrofitObject.productDAO().getProduct("dogukangundogan")
@@ -28,7 +29,20 @@ class ProductsViewModel:ViewModel() {
                     loading.value=false
                 }else{
                     onError("Error : ${response.message()} ")
+                    Constants.noInternetConnection.value=true
                 }
+            }
+        }
+    }
+
+    fun updateProductCardStatus(id:Int,status:Int){
+        loading.value=true
+        job= CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
+            val response = RetrofitObject.productDAO().updateCard(id,status)
+            if (response.isSuccessful){
+                 loading.value=false
+            }else{
+                onError("Error : ${response.message()} ")
             }
         }
     }

@@ -45,16 +45,11 @@ class ProductsFragment : Fragment() {
         ).build()
         Constants.db=db
         productsDAO=db.productDao()
-        var isDatabaseEmpty=false
+        productViewModel.getProducts()
+        var products: List<Product> = emptyList()
         CoroutineScope(Dispatchers.IO).launch {
-            productsDAO=Constants.db.productDao()
-            if (productsDAO.getProductById(0)==null){
+            products = productsDAO.getProducts()
 
-                isDatabaseEmpty=true
-            }
-        }
-        if (!isDatabaseEmpty){
-            productViewModel.request()
         }
 
 
@@ -67,31 +62,34 @@ class ProductsFragment : Fragment() {
                     resources.getInteger(R.integer.card_preview_column))
 
             )
-            recyclerviewAdapter=ProductsRecyclerViewAdapter(emptyList())
+            recyclerviewAdapter=ProductsRecyclerViewAdapter(emptyList(),productViewModel)
 
+            Constants.noInternetConnection.observe(viewLifecycleOwner,{
+                if (it){
+                    recyclerviewAdapter=ProductsRecyclerViewAdapter(products,productViewModel)
+
+                }
+
+            })
             CoroutineScope(Dispatchers.IO).launch {
-                val products = productsDAO.getProducts()
 
                 withContext(Dispatchers.Main){
-                    if (!isDatabaseEmpty){
-                        recyclerviewAdapter=ProductsRecyclerViewAdapter(products)
-                    }else{
+
                         productViewModel.products.observe(viewLifecycleOwner,{ list->
                             if (list.isNotEmpty()){
-                                saveToDatabase(list)
-                                recyclerviewAdapter=ProductsRecyclerViewAdapter(list)
+                                if (products.isEmpty()){
+                                    saveToDatabase(list)
+                                }
+                                recyclerviewAdapter=ProductsRecyclerViewAdapter(list,productViewModel)
                             }
                         })
-                    }
+
                 }
 
             }
 
 
         }
-
-
-
         return binding.root
     }
 

@@ -11,6 +11,8 @@
     <string name="empty_row">Sepetiniz boş</string>
     <string name="start_to_shopping">Alışverişe Başlayın</string>
     <string name="sorry">Üzgünüz</string>
+    <string name="price">fiyat</string>
+    <string name="name">isim</string>
 
 
 </resources>
