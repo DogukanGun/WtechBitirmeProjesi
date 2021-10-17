@@ -19,6 +19,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wtechbitirmeprojesi.adapter.product_detail_adepters.ProductDetailRecyclerViewAdapter
+import androidx.recyclerview.widget.DividerItemDecoration
+
+
+
 
 
 class ProductDetailFragment : Fragment() {
@@ -35,7 +39,15 @@ class ProductDetailFragment : Fragment() {
         val bundle = arguments
         binding.apply {
             productImages.layoutManager=LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
             productInformation.layoutManager=LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            productInformation.addItemDecoration(
+                DividerItemDecoration(
+                    productInformation.getContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+
             if(bundle!=null){
                 val args  =
                     ProductDetailFragmentArgs.fromBundle(

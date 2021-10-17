@@ -6,6 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wtechbitirmeprojesi.R
  import com.example.wtechbitirmeprojesi.databinding.FragmentProductsDetailInformationRowBinding
+import java.util.*
+import java.util.stream.Collector
 
 class ProductDetailRecyclerViewAdapter (val informationList:Map<String,String>):RecyclerView.Adapter<ProductDetailRecyclerViewAdapter.RowHolder>(){
     class RowHolder(val binding: FragmentProductsDetailInformationRowBinding): RecyclerView.ViewHolder(binding.root){
@@ -21,15 +23,14 @@ class ProductDetailRecyclerViewAdapter (val informationList:Map<String,String>):
     override fun onBindViewHolder(holder: RowHolder, position: Int) {
         holder.binding.apply {
             if (informationList.isNotEmpty()){
-                for (index in informationList){
-                    key.text=index.key
-                    value.text=index.value
-                }
+                key.text=informationList.keys.toList()[position]
+                value.text=informationList.values.toTypedArray()[position]
+
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return informationList.size
+        return informationList.entries.size
     }
 }
