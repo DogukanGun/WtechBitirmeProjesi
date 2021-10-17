@@ -17,9 +17,9 @@ interface ProductsDAO {
     @POST("bilgisayarlar.php")
     @FormUrlEncoded
     suspend fun getProduct(@Field("kullanici")user:String):Response<ProductResponse>
-    @POST("bilgisayar_indirimli.php")
+    @POST("bilgisayarlar_indirimli.php")
     @FormUrlEncoded
-    suspend fun getDiscountedProduct(@Field("kullanici")user:String):Response<List<Product>>
+    suspend fun getDiscountedProduct(@Field("kullanici")user:String):Response<ProductResponse>
     @POST("bilgisayarlar_sepet.php")
     @FormUrlEncoded
     suspend fun getCard(@Field("kullanici")user:String):Response<ProductResponse>

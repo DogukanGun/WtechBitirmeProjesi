@@ -14,13 +14,13 @@ class CardViewModel:ViewModel() {
     var job:Job?=null
     private val errorMessage=MutableLiveData("")
     fun getProduct(){
-
         loading.value=true
-        job = CoroutineScope(Dispatchers.IO).launch {
+        job = CoroutineScope(Dispatchers.IO+exceptionHandler).launch {
             val response = RetrofitObject.productDAO().getCard("dogukangundogan")
             withContext(Dispatchers.Main){
                 if (response.isSuccessful){
                     card.value = (response.body()!!).products
+                    loading.value=false
                 }else{
                     onError("Error ${response.message()}")
                 }

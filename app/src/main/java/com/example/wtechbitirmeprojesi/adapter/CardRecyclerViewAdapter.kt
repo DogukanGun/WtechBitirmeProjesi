@@ -30,7 +30,7 @@ class CardRecyclerViewAdapter(private val card:MutableList<Product>,private val 
         holder.binding.apply {
             val imagePath= card[position].imagePath1
             Picasso.get().load(imagePath).into(imageView2)
-            textView3.text=card[position].name
+            textView3.text=card[position].name.subSequence(0,15)
             textView5.text=card[position].price
             remove.setOnClickListener {
                 cardViewModel.updateProductCardStatus(card[position].id,0);
