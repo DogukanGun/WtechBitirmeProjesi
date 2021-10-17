@@ -58,6 +58,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/adapter/product_detail_adepters/ProductDetailRecyclerViewAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/adapter/product_detail_adepters/ProductDetailRecyclerViewAdapterForImages.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/CardFragment.kt">
           <value>
             <set />
@@ -79,6 +89,31 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/ProductsFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/activity/UserActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/fragment/CardFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/fragment/DiscountedProductsFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/fragment/ProductDetailFragment.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/controller/fragment/ProductsFragment.kt">
           <value>
             <set />
           </value>
@@ -153,6 +188,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/viewModel/ProductDetailViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/example/wtechbitirmeprojesi/viewModel/ProductsViewModel.kt">
           <value>
             <set />
@@ -203,7 +243,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_product_detail_images_row.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_products.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_products_detail_information_row.xml">
           <value>
             <set />
           </value>

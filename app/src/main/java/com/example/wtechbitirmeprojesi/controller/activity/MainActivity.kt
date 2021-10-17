@@ -1,4 +1,4 @@
-package com.example.wtechbitirmeprojesi
+package com.example.wtechbitirmeprojesi.controller.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.example.wtechbitirmeprojesi.R
 import com.example.wtechbitirmeprojesi.databinding.ActivityMainBinding
 import com.example.wtechbitirmeprojesi.resources.Constants
 
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding=DataBindingUtil.setContentView(this, R.layout.activity_main)
         setUpNavigation()
     }
 

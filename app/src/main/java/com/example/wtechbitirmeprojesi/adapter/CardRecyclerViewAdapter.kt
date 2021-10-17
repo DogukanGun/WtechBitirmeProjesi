@@ -1,8 +1,11 @@
 package com.example.wtechbitirmeprojesi.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wtechbitirmeprojesi.R
@@ -13,7 +16,7 @@ import com.example.wtechbitirmeprojesi.resources.Constants.toggleStatus
 import com.example.wtechbitirmeprojesi.viewModel.CardViewModel
 import com.squareup.picasso.Picasso
 
-class CardRecyclerViewAdapter(private val card:MutableList<Product>,private val cardViewModel: CardViewModel):RecyclerView.Adapter<CardRecyclerViewAdapter.CardHolder>() {
+class CardRecyclerViewAdapter(private val resource: Resources, private val context: Context, private val card:MutableList<Product>, private val cardViewModel: CardViewModel):RecyclerView.Adapter<CardRecyclerViewAdapter.CardHolder>() {
 
     class CardHolder(val binding: FragmentCardRecyclerviewRowBinding):RecyclerView.ViewHolder(binding.root){
 
@@ -35,6 +38,7 @@ class CardRecyclerViewAdapter(private val card:MutableList<Product>,private val 
             remove.setOnClickListener {
                 cardViewModel.updateProductCardStatus(card[position].id,0);
                 card.removeAt(position)
+                Toast.makeText(context,resource.getText(R.string.adding_message),Toast.LENGTH_LONG).show()
                 notifyDataSetChanged()
             }
         }

@@ -12,4 +12,15 @@
     <string name="sorry">We\'re Sorry</string>
     <string name="price">price</string>
     <string name="name">name</string>
+    <string name="buy">buy</string>
+    <string name="adding_message">Product is added to card</string>
+    <string name="deleting_message">Product is deleted from card</string>
+    <string name="not_found_message">Product is not found</string>
+    <string name="cpu">Cpu</string>
+    <string name="hddCapacity">Hdd Capacity</string>
+    <string name="memoryType">Memory Type</string>
+      <string name="ramCapacity">Ram Capacity</string>
+    <string name="screenResolution">Screen Resolution</string>
+    <string name="screenSize">Screen Size</string>
+    <string name="ssdCapacity">Ssd Capacity</string>
 </resources>

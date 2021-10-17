@@ -6,6 +6,7 @@
     <dimen name="button_width">120dp</dimen>
     <dimen name="grid_layout_width">180dp</dimen>
     <dimen name="grid_layout_height">350dp</dimen>
-
+    <dimen name="image_width">100dp</dimen>
+    <dimen name="row_text_view_height">40dp</dimen>
 
 </resources>

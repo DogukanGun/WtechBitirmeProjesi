@@ -1,4 +1,4 @@
-package com.example.wtechbitirmeprojesi.controller
+package com.example.wtechbitirmeprojesi.controller.fragment
 
  import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.wtechbitirmeprojesi.R
 import com.example.wtechbitirmeprojesi.adapter.ProductsRecyclerViewAdapter
 import com.example.wtechbitirmeprojesi.databinding.FragmentProductsBinding
- import android.graphics.Rect
-import androidx.fragment.app.viewModels
- import androidx.recyclerview.widget.RecyclerView.ItemDecoration
+ import androidx.fragment.app.viewModels
  import androidx.room.Room
  import com.example.wtechbitirmeprojesi.model.Product
  import com.example.wtechbitirmeprojesi.resources.Constants
@@ -24,8 +22,6 @@ import androidx.fragment.app.viewModels
  import kotlinx.coroutines.CoroutineScope
  import kotlinx.coroutines.Dispatchers
  import kotlinx.coroutines.launch
- import kotlinx.coroutines.withContext
- import okhttp3.Dispatcher
 
 
 class ProductsFragment : Fragment() {
@@ -50,7 +46,6 @@ class ProductsFragment : Fragment() {
         var products: List<Product> = emptyList()
         CoroutineScope(Dispatchers.IO).launch {
             products = productsDAO.getProducts()
-
         }
 
 
@@ -63,11 +58,11 @@ class ProductsFragment : Fragment() {
                     resources.getInteger(R.integer.card_preview_column))
 
             )
-            recyclerviewAdapter=ProductsRecyclerViewAdapter(emptyList(),productViewModel)
+            recyclerviewAdapter=ProductsRecyclerViewAdapter(resources,requireContext(),emptyList(),productViewModel)
 
             Constants.noInternetConnection.observe(viewLifecycleOwner,{
                 if (it){
-                    recyclerviewAdapter=ProductsRecyclerViewAdapter(products,productViewModel)
+                    recyclerviewAdapter=ProductsRecyclerViewAdapter(resources,requireContext(),products,productViewModel)
 
                 }
 
@@ -77,7 +72,7 @@ class ProductsFragment : Fragment() {
                     if (products.isEmpty()){
                         saveToDatabase(list)
                     }
-                    recyclerviewAdapter=ProductsRecyclerViewAdapter(list,productViewModel)
+                    recyclerviewAdapter=ProductsRecyclerViewAdapter(resources,requireContext(),list,productViewModel)
                 }
             })
 

@@ -13,6 +13,19 @@
     <string name="sorry">Üzgünüz</string>
     <string name="price">fiyat</string>
     <string name="name">isim</string>
+    <string name="buy">Al</string>
+    <string name="adding_message">Urun sepete eklendi</string>
+    <string name="deleting_message">Urun sepetten cikarildi</string>
+    <string name="not_found_message">Urun bulanamdi</string>
+    <string name="cpu">Cpu</string>
+    <string name="hddCapacity">Hard Disk Kapasitesi</string>
+    <string name="memoryType">Hafiza Tipi</string>
+    <string name="ramCapacity">Ram Kapasitesi</string>
+    <string name="screenResolution">Ekran Cozunurlugu</string>
+    <string name="screenSize">Ekran Boyutu</string>
+    <string name="ssdCapacity">Ssd Kapasitesi</string>
+
+
 
 
 </resources>
