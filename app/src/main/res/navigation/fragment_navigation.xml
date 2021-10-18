@@ -13,7 +13,7 @@
         <action
             android:id="@+id/action_discountedProductsFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment"
-            app:enterAnim="@android:anim/bounce_interpolator"
+            app:enterAnim="@anim/nav_default_enter_anim"
             app:launchSingleTop="false" />
     </fragment>
     <fragment

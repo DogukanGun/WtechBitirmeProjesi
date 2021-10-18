@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wtechbitirmeprojesi.R
+import com.example.wtechbitirmeprojesi.controller.fragment.DiscountedProductsFragmentDirections
 import com.example.wtechbitirmeprojesi.controller.fragment.ProductsFragmentDirections
 import com.example.wtechbitirmeprojesi.databinding.FragmentProductsRecyclerviewRowBinding
 import com.example.wtechbitirmeprojesi.model.Product
@@ -39,7 +40,7 @@ class DiscountedProductRecyclerViewAdapter(private val resource: Resources, priv
                 Picasso.get().load(imagePath).into(image)
                 textView.text=products[position].name
                 card.setOnClickListener{
-                    val action = ProductsFragmentDirections.actionProductsFragmentToProductDetailFragment(
+                    val action = DiscountedProductsFragmentDirections.actionDiscountedProductsFragmentToProductDetailFragment(
                         products[position].id.toString()
                     )
                     Constants.navHostFragment.navController.navigate(action)

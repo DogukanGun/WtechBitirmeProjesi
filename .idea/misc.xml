@@ -8,7 +8,7 @@
         <entry key="app/src/main/res/layout/empty_action.xml" value="0.253125" />
         <entry key="app/src/main/res/layout/empy_row.xml" value="0.253125" />
         <entry key="app/src/main/res/layout/fragment_card.xml" value="0.2941699778674382" />
-        <entry key="app/src/main/res/layout/fragment_card_recyclerview_row.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_card_recyclerview_row.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.33106884057971014" />
         <entry key="app/src/main/res/layout/fragment_discounted_products.xml" value="0.33106884057971014" />
         <entry key="app/src/main/res/layout/fragment_product_detail.xml" value="0.1" />

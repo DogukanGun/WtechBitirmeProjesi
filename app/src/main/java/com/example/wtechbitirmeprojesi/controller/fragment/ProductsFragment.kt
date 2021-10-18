@@ -27,7 +27,6 @@ import com.example.wtechbitirmeprojesi.databinding.FragmentProductsBinding
 class ProductsFragment : Fragment() {
     lateinit var binding:FragmentProductsBinding
     private val productViewModel:ProductsViewModel by viewModels()
-    lateinit var productsDAO: ProductsDAO
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,17 +35,8 @@ class ProductsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_products,container,false)
 
-        val db = Room.databaseBuilder(
-            requireContext(),
-            Database::class.java, "product"
-        ).build()
-        Constants.db=db
-        productsDAO=db.productDao()
         productViewModel.getProducts()
         var products: List<Product> = emptyList()
-        CoroutineScope(Dispatchers.IO).launch {
-            products = productsDAO.getProducts()
-        }
 
 
 
@@ -69,9 +59,6 @@ class ProductsFragment : Fragment() {
             })
             productViewModel.products.observe(viewLifecycleOwner,{ list->
                 if (list.isNotEmpty()){
-                    if (products.isEmpty()){
-                        saveToDatabase(list)
-                    }
                     recyclerviewAdapter=ProductsRecyclerViewAdapter(resources,requireContext(),list,productViewModel)
                 }
             })
@@ -82,14 +69,6 @@ class ProductsFragment : Fragment() {
         return binding.root
     }
 
-    fun saveToDatabase(products:List<Product>){
-        CoroutineScope(Dispatchers.IO).launch {
-            for (index in products){
-                productsDAO.addProduct(index)
-            }
-        }
-
-    }
     companion object {
 
     }
